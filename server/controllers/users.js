@@ -70,7 +70,7 @@ module.exports = {
                 }
                 return user
                     .update({
-                        userid: req.body.userid || user.userid,
+                        userid: req.params.userid || user.userid,
                         email: req.body.email || user.email,
                         password: req.body.password || user.password,
                         fname: req.body.fname || user.fname,
