@@ -16,6 +16,10 @@
     "operatorsAliases": false
   },
   "production": {
-    "use_env_variable": "DATABASE_URL"
+    "use_env_variable": "DATABASE_URL",
+    "database": "vbay",
+    "host": "afternoon-beyond-89008.herokuapp.com",
+    "dialect": "postgres",
+    "operatorsAliases": false
   }
 }
