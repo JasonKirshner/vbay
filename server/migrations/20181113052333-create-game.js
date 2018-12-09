@@ -17,8 +17,7 @@ module.exports = {
       },
       igdbid: {
         type: Sequelize.STRING,
-        allowNull: true,
-        defaultValue: true
+        allowNull: true
       },
       createdAt: {
         allowNull: false,
