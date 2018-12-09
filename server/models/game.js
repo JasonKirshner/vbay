@@ -16,8 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     igdbid: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: true
+      allowNull: true
     }
   })
   Game.associate = (models) => {
