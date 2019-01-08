@@ -1,6 +1,16 @@
+'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Recipient = sequelize.define('Recipient', {
-    recipient: {
+  const DeletedMsg = sequelize.define('DeletedMsg', {
+    message: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'Messages',
+        key: 'id'
+      }
+    },
+    remover: {
       type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
@@ -9,22 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    message: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Messages',
-        key: 'id'
-      }
-    },
-    isread: {
+    removed: {
       type: DataTypes.BOOLEAN,
       allowNull: false
-    },
-  })
-  Recipient.associate = function (models) {
+    }
+  }, {});
+  DeletedMsg.associate = function (models) {
     // associations can be defined here
-  }
-  return Recipient
-}
+  };
+  return DeletedMsg;
+};
