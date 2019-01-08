@@ -7,8 +7,8 @@ const salesController = require('../controllers').sales
 const tradesController = require('../controllers').trades
 const usersController = require('../controllers').users
 
-const igdb = require('igdb-api-node').default
-const client = igdb('YOUR_API_KEY')
+/*const igdb = require('igdb-api-node').default
+const client = igdb('YOUR_API_KEY')*/
 
 module.exports = (app) => {
     app.get('/vbay-api', (req, res) => res.status(200).send({
