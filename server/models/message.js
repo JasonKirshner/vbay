@@ -2,35 +2,19 @@ module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
     parent: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Messages',
-        key: 'id'
-      }
+      allowNull: false
     },
     sender: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Users',
-        key: 'id'
-      }
+      allowNull: false
     },
     recipient: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Users',
-        key: 'id'
-      }
+      allowNull: false
     },
     subject: {
       type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: 'Messages',
-        key: 'id'
-      }
+      allowNull: false
     },
     body: {
       type: DataTypes.STRING,
@@ -38,7 +22,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
   Message.associate = function (models) {
-    // associations can be defined here
+    Message.belongsTo(models.Message, {
+      foreignKey: 'parent',
+      targetKey: 'id'
+    })
+    Message.belongsTo(models.User, {
+      foreignKey: 'sender',
+      targetKey: 'id'
+    })
+    Message.belongsTo(models.User, {
+      foreignKey: 'recipient',
+      targetKey: 'id'
+    })
   }
   return Message
 }

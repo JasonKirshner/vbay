@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const DeletedMsg = sequelize.define('DeletedMsg', {
     message: {
@@ -23,9 +23,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false
     }
-  }, {});
+  })
   DeletedMsg.associate = function (models) {
-    // associations can be defined here
-  };
-  return DeletedMsg;
-};
+    DeletedMsg.belongsTo(models.Message, {
+      foreignKey: 'message',
+      targetKey: 'id'
+    })
+    DeletedMsg.belongsTo(models.User, {
+      foreignKey: 'remover',
+      targetKey: 'id'
+    })
+  }
+  return DeletedMsg
+}
