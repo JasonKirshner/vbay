@@ -1,27 +1,12 @@
+'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Messages', {
+    return queryInterface.createTable('Recipients', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      parent: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Messages',
-          key: 'id'
-        }
-      },
-      sender: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
-        }
       },
       recipient: {
         type: DataTypes.INTEGER,
@@ -31,7 +16,7 @@ module.exports = {
           key: 'id'
         }
       },
-      subject: {
+      message: {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
@@ -39,8 +24,8 @@ module.exports = {
           key: 'id'
         }
       },
-      body: {
-        type: DataTypes.STRING,
+      isread: {
+        type: Sequelize.BOOLEAN,
         allowNull: false
       },
       createdAt: {
@@ -51,9 +36,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    })
+    });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Messages')
+    return queryInterface.dropTable('Recipients');
   }
-}
+};

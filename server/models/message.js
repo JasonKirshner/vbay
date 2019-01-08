@@ -1,11 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      primaryKey: true,
-      autoIncrement: true
-    },
     parent: {
       type: DataTypes.INTEGER,
       allowNull: false,
