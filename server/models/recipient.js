@@ -24,7 +24,14 @@ module.exports = (sequelize, DataTypes) => {
     },
   })
   Recipient.associate = function (models) {
-    // associations can be defined here
+    Recipient.belongsTo(models.User, {
+      foreignKey: 'recipient',
+      targetKey: 'id'
+    })
+    Recipient.belongsTo(models.User, {
+      foreignKey: 'recipient',
+      targetKey: 'id'
+    })
   }
   return Recipient
 }
