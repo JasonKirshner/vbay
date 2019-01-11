@@ -1,28 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Auction = sequelize.define('Auction', {
-    auctionid: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    userid: {
-      allowNull: false,
+    auctioneer: {
       type: DataTypes.STRING,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Users',
-        key: 'userid'
-      }
+      allowNull: false
     },
-    gameid: {
-      allowNull: false,
+    game: {
       type: DataTypes.INTEGER,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Games',
-        key: 'gameid'
-      }
+      allowNull: false
     },
     description: {
       type: DataTypes.STRING,
@@ -38,16 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
   Auction.associate = (models) => {
-    Auction.belongsTo(models.User, {
-      foreignKey: 'userid',
-      onDelete: 'CASCADE'
-    })
-    Auction.belongsTo(models.Game, {
-      foreignKey: 'gameid',
-      onDelete: 'CASCADE'
-    })
     Auction.hasMany(models.Bid, {
-      foreignKey: 'auctionid',
+      foreignKey: 'auction',
       as: 'bids'
     })
   }
