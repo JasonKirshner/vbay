@@ -1,26 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Trade = sequelize.define('Trade', {
-    tradeid: {
+    game: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      autoIncrement: true,
-      primaryKey: true
+      allowNull: false
     },
-    gameid: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Games',
-        key: 'gameid'
-      }
-    },
-    userid: {
+    trader: {
       type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: 'Users',
-        key: 'userid'
-      }
+      allowNull: false
     },
     description: {
       type: DataTypes.STRING,
@@ -36,20 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
   Trade.associate = (models) => {
-    Trade.belongsTo(models.Game, {
-      foreignKey: 'gameid',
-      onDelete: 'CASCADE'
-    })
-    Trade.belongsTo(models.User, {
-      foreignKey: 'userid',
-      onDelete: 'CASCADE'
-    })
     Trade.hasMany(models.Offer, {
-      foreignKey: 'tradeid',
+      foreignKey: 'trade',
       as: 'offers'
     })
     Trade.hasOne(models.CompletedTrade, {
-      foreignKey: 'tradeid'
+      foreignKey: 'trade'
     })
   }
   return Trade

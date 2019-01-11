@@ -1,11 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    userid: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true,
-      unique: true
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false
@@ -25,18 +19,31 @@ module.exports = (sequelize, DataTypes) => {
   })
   User.associate = function (models) {
     User.hasMany(models.Auction, {
-      foreignKey: 'userid',
+      foreignKey: 'auctioneer',
       as: 'selling'
     })
     User.hasMany(models.Bid, {
-      foreignKey: 'auctionid'
+      foreignKey: 'bidder',
+      as: 'bidding'
     })
     User.hasMany(models.Trade, {
-      foreignKey: 'userid',
+      foreignKey: 'trader',
       as: 'trading'
     })
     User.hasMany(models.Offer, {
-      foreignKey: 'userid'
+      foreignKey: 'offerer',
+      as: 'offering'
+    })
+    User.hasMany(models.Message, {
+      foreignKey: 'sender',
+      as: 'sent'
+    })
+    User.hasMany(models.Recipient, {
+      foreignKey: 'recipient',
+      as: 'inbox'
+    })
+    User.hasMany(models.DeletedMsg, {
+      foreignKey: 'remover'
     })
   }
   return User

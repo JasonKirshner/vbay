@@ -1,37 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
   const CompletedTrade = sequelize.define('CompletedTrade', {
-    completionid: {
+    trade: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      primaryKey: true,
-      autoIncrement: true
+      allowNull: false
     },
-    tradeid: {
-      allowNull: false,
+    offer: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'Trades',
-        key: 'tradeid'
-      }
-    },
-    offerid: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Offers',
-        key: 'offerid'
-      }
-    },
+      allowNull: false
+    }
   })
-  CompletedTrade.associate = function (models) {
-    CompletedTrade.belongsTo(models.Trade, {
-      foreignKey: 'tradeid',
-      onDelete: 'CASCADE'
-    })
-    CompletedTrade.belongsTo(models.Offer, {
-      foreignKey: 'offerid',
-      onDelete: 'CASCADE'
-    })
-  }
+  CompletedTrade.associate = function (models) {}
   return CompletedTrade
 }

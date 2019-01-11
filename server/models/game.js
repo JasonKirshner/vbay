@@ -1,11 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const Game = sequelize.define('Game', {
-    gameid: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      primaryKey: true,
-      autoIncrement: true
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -21,15 +15,15 @@ module.exports = (sequelize, DataTypes) => {
   })
   Game.associate = (models) => {
     Game.hasMany(models.Auction, {
-      foreignKey: 'gameid',
+      foreignKey: 'game',
       onDelete: 'CASCADE'
     })
     Game.hasMany(models.Trade, {
-      foreignKey: 'gameid',
+      foreignKey: 'game',
       onDelete: 'CASCADE'
     })
     Game.hasMany(models.Offer, {
-      foreignKey: 'gameid',
+      foreignKey: 'game',
       onDelete: 'CASCADE'
     })
   }

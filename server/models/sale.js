@@ -1,41 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
   const Sale = sequelize.define('Sale', {
-    saleid: {
+    auction: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      autoIncrement: true,
-      primaryKey: true
+      allowNull: false
     },
-    auctionid: {
-      allowNull: false,
+    bid: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'Auctions',
-        key: 'auctionid'
-      }
-    },
-    bidid: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Bids',
-        key: 'bidid'
-      }
+      allowNull: false
     },
     price: {
       type: DataTypes.DOUBLE,
       allowNull: false
     }
   })
-  Sale.associate = function (models) {
-    Sale.belongsTo(models.Auction, {
-      foreignKey: 'auctionid',
-      onDelete: 'CASCADE'
-    })
-    Sale.belongsTo(models.Bid, {
-      foreignKey: 'bidid',
-      onDelete: 'CASCADE'
-    })
-  }
+  Sale.associate = function (models) {}
   return Sale
 }

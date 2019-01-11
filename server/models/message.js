@@ -22,17 +22,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
   Message.associate = function (models) {
-    Message.belongsTo(models.Message, {
-      foreignKey: 'parent',
-      targetKey: 'id'
+    Message.hasOne(models.Message, {
+      foreignKey: 'parent'
     })
-    Message.belongsTo(models.User, {
-      foreignKey: 'sender',
-      targetKey: 'id'
+    Message.hasMany(models.DeletedMsg, {
+      foreignKey: 'message',
+      as: 'deletions'
     })
-    Message.belongsTo(models.User, {
-      foreignKey: 'recipient',
-      targetKey: 'id'
+    Message.hasOne(models.Recipient, {
+      foreignKey: 'message'
     })
   }
   return Message
