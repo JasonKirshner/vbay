@@ -1,49 +1,49 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Auctions', {
-      auctionid: {
+      id: {
+        type: Sequelize.INTEGER,
         allowNull: true,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
-      userid: {
-        allowNull: false,
+      auctioneer: {
         type: Sequelize.STRING,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'Users',
-          key: 'userid'
+          key: 'id'
         }
       },
-      gameid: {
-        allowNull: false,
+      game: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'Games',
-          key: 'gameid'
+          key: 'id'
         }
       },
       description: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       status: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       startprice: {
-        allowNull: false,
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
+        allowNull: false
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       }
     }),
   down: (queryInterface, Sequelize) =>

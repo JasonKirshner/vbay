@@ -1,4 +1,3 @@
-'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('DeletedMsgs', {
@@ -9,7 +8,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       message: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
@@ -18,7 +17,7 @@ module.exports = {
         }
       },
       remover: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
@@ -27,7 +26,7 @@ module.exports = {
         }
       },
       removed: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         allowNull: false
       },
       createdAt: {
