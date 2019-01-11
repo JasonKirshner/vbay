@@ -3,13 +3,13 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Recipients', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       recipient: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Users',
@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       message: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'Messages',
@@ -29,12 +29,12 @@ module.exports = {
         allowNull: false
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       }
     });
   },

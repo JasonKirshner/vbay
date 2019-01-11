@@ -1,37 +1,37 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('CompletedTrades', {
-      completionid: {
+      id: {
+        type: Sequelize.INTEGER,
         allowNull: true,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
-      tradeid: {
-        allowNull: false,
+      trade: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'Trades',
-          key: 'tradeid'
+          key: 'id'
         }
       },
-      offerid: {
-        allowNull: false,
+      offer: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'Offers',
-          key: 'offerid'
+          key: 'id'
         }
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       }
     }),
   down: (queryInterface, Sequelize) =>

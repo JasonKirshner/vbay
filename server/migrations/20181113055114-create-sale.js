@@ -1,24 +1,24 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Sales', {
-      saleid: {
+      id: {
+        type: Sequelize.INTEGER,
         allowNull: true,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
-      auctionid: {
-        allowNull: false,
+      auction: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'Auctions',
-          key: 'auctionid'
+          key: 'id'
         }
       },
-      bidid: {
-        allowNull: false,
+      bid: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'Bids',
@@ -26,16 +26,16 @@ module.exports = {
         }
       },
       price: {
-        allowNull: false,
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
+        allowNull: false
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       }
     }),
   down: (queryInterface, Sequelize) =>

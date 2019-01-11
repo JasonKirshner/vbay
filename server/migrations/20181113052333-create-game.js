@@ -1,11 +1,11 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Games', {
-      gameid: {
+      id: {
+        type: Sequelize.INTEGER,
         allowNull: true,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       name: {
         type: Sequelize.STRING,
@@ -20,12 +20,12 @@ module.exports = {
         allowNull: true
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       }
     }),
   down: (queryInterface, Sequelize) =>
