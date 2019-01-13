@@ -4,8 +4,8 @@ module.exports = {
     create(req, res) {
         return CompletedTrade
             .create({
-                tradeid: req.params.tradeid,
-                offerid: req.body.offerid
+                id: req.params.id,
+                id: req.body.id
             })
             .then(completedtrade => res.status(201).send(completedtrade))
             .catch(error => res.status(400).send(error))
@@ -20,7 +20,7 @@ module.exports = {
 
     retrieve(req, res) {
         return CompletedTrade
-            .findById(req.params.completionid)
+            .findById(req.params.id)
             .then(completedtrade => {
                 if (!completedtrade) {
                     return res.status(404).send({
@@ -34,7 +34,7 @@ module.exports = {
 
     update(req, res) {
         return CompletedTrade
-            .findById(req.params.completionid)
+            .findById(req.params.id)
             .then(completedtrade => {
                 if (!completedtrade) {
                     return res.status(404).send({
@@ -43,11 +43,11 @@ module.exports = {
                 }
                 return completedtrade
                     .update({
-                        completionid: req.params.completionid || completedtrade.completionid,
-                        tradeid: req.body.tradeid || completedtrade.tradeid,
-                        offerid: req.body.offerid || completedtrade.offerid
+                        id: req.params.id || completedtrade.id,
+                        id: req.body.id || completedtrade.id,
+                        id: req.body.id || completedtrade.id
                     })
-                    .then(() => res.status(200).send(completedtrade))  // Send back the updated completedtrade.
+                    .then(() => res.status(200).send(completedtrade)) // Send back the updated completedtrade.
                     .catch((error) => res.status(400).send(error))
             })
             .catch((error) => res.status(400).send(error))
@@ -55,7 +55,7 @@ module.exports = {
 
     destroy(req, res) {
         return CompletedTrade
-            .findById(req.params.completionid)
+            .findById(req.params.id)
             .then(completedtrade => {
                 if (!completedtrade) {
                     return res.status(400).send({
@@ -64,7 +64,9 @@ module.exports = {
                 }
                 return completedtrade
                     .destroy()
-                    .then(() => res.status(200).send({ message: 'CompletedTrade deleted successfully.' }))
+                    .then(() => res.status(200).send({
+                        message: 'CompletedTrade deleted successfully.'
+                    }))
                     .catch(error => res.status(400).send(error))
             })
             .catch(error => res.status(400).send(error))

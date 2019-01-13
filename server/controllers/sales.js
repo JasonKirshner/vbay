@@ -4,8 +4,8 @@ module.exports = {
     create(req, res) {
         return Sale
             .create({
-                auctionid: req.params.auctionid,
-                bidid: req.body.bidid,
+                auction: req.params.auction,
+                bid: req.body.bid,
                 price: req.body.price
             })
             .then(sale => res.status(201).send(sale))
@@ -21,7 +21,7 @@ module.exports = {
 
     retrieve(req, res) {
         return Sale
-            .findById(req.params.saleid)
+            .findById(req.params.id)
             .then(sale => {
                 if (!sale) {
                     return res.status(404).send({
@@ -35,7 +35,7 @@ module.exports = {
 
     update(req, res) {
         return Sale
-            .findById(req.params.saleid)
+            .findById(req.params.id)
             .then(sale => {
                 if (!sale) {
                     return res.status(404).send({
@@ -44,12 +44,12 @@ module.exports = {
                 }
                 return sale
                     .update({
-                        saleid: req.params.saleid || sale.saleid,
-                        auctionid: req.body.auctionid || sale.auctionid,
-                        bidid: req.body.bidid || sale.bidid,
+                        id: req.params.id || sale.id,
+                        auction: req.body.id || sale.auction,
+                        bid: req.body.bidid || sale.bid,
                         price: req.body.price || sale.price
                     })
-                    .then(() => res.status(200).send(sale))  // Send back the updated sale.
+                    .then(() => res.status(200).send(sale)) // Send back the updated sale.
                     .catch((error) => res.status(400).send(error))
             })
             .catch((error) => res.status(400).send(error))
@@ -57,7 +57,7 @@ module.exports = {
 
     destroy(req, res) {
         return Sale
-            .findById(req.params.saleid)
+            .findById(req.params.id)
             .then(sale => {
                 if (!sale) {
                     return res.status(400).send({
@@ -66,7 +66,9 @@ module.exports = {
                 }
                 return sale
                     .destroy()
-                    .then(() => res.status(200).send({ message: 'Sale deleted successfully.' }))
+                    .then(() => res.status(200).send({
+                        message: 'Sale deleted successfully.'
+                    }))
                     .catch(error => res.status(400).send(error))
             })
             .catch(error => res.status(400).send(error))

@@ -6,8 +6,8 @@ module.exports = {
         console.log('here')
         return Trade
             .create({
-                userid: req.params.userid,
-                gameid: req.body.gameid,
+                game: req.body.game,
+                trader: req.params.trader,
                 description: req.body.description,
                 condition: req.body.condition,
                 status: req.body.status
@@ -19,12 +19,10 @@ module.exports = {
     list(req, res) {
         return Trade
             .findAll({
-                include: [
-                    {
-                        model: Offer,
-                        as: 'offers'
-                    }
-                ]
+                include: [{
+                    model: Offer,
+                    as: 'offers'
+                }]
             })
             .then(trades => res.status(200).send(trades))
             .catch(error => res.status(400).send(error))
@@ -32,13 +30,11 @@ module.exports = {
 
     retrieve(req, res) {
         return Trade
-            .findById(req.params.tradeid, {
-                include: [
-                    {
-                        model: Offer,
-                        as: 'offers'
-                    }
-                ]
+            .findById(req.params.id, {
+                include: [{
+                    model: Offer,
+                    as: 'offers'
+                }]
             })
             .then(trade => {
                 if (!trade) {
@@ -53,7 +49,7 @@ module.exports = {
 
     update(req, res) {
         return Trade
-            .findById(req.params.tradeid)
+            .findById(req.params.id)
             .then(trade => {
                 if (!trade) {
                     return res.status(404).send({
@@ -62,14 +58,14 @@ module.exports = {
                 }
                 return trade
                     .update({
-                        tradeid: req.params.tradeid || trade.tradeid,
-                        userid: req.body.userid || trade.userid,
-                        gameid: req.body.gameid || trade.gameid,
+                        id: req.params.id || trade.id,
+                        game: req.body.game || trade.game,
+                        trader: req.body.trader || trade.trader,
                         description: req.body.description || trade.description,
                         condition: req.body.condition || trade.condition,
                         status: req.body.status || trade.status
                     })
-                    .then(() => res.status(200).send(trade))  // Send back the updated trade.
+                    .then(() => res.status(200).send(trade)) // Send back the updated trade.
                     .catch((error) => res.status(400).send(error))
             })
             .catch((error) => res.status(400).send(error))
@@ -77,7 +73,7 @@ module.exports = {
 
     destroy(req, res) {
         return Trade
-            .findById(req.params.tradeid)
+            .findById(req.params.id)
             .then(trade => {
                 if (!trade) {
                     return res.status(400).send({
@@ -86,7 +82,9 @@ module.exports = {
                 }
                 return trade
                     .destroy()
-                    .then(() => res.status(200).send({ message: 'Trade deleted successfully.' }))
+                    .then(() => res.status(200).send({
+                        message: 'Trade deleted successfully.'
+                    }))
                     .catch(error => res.status(400).send(error))
             })
             .catch(error => res.status(400).send(error))
