@@ -4,8 +4,8 @@ module.exports = {
     create(req, res) {
         return Bid
             .create({
-                userid: req.body.userid,
-                auctionid: req.params.auctionid,
+                bidder: req.body.bidder,
+                auction: req.params.auction,
                 price: req.body.price
             })
             .then(bid => res.status(201).send(bid))
@@ -45,11 +45,11 @@ module.exports = {
                 return bid
                     .update({
                         bidid: req.params.bidid || bid.bidid,
-                        userid: req.body.userid || bid.userid,
-                        auctionid: req.body.auctionid || bid.auctionid,
+                        id: req.body.id || bid.id,
+                        id: req.body.id || bid.id,
                         price: req.body.price || bid.price
                     })
-                    .then(() => res.status(200).send(bid))  // Send back the updated bid.
+                    .then(() => res.status(200).send(bid)) // Send back the updated bid.
                     .catch((error) => res.status(400).send(error))
             })
             .catch((error) => res.status(400).send(error))
@@ -66,7 +66,9 @@ module.exports = {
                 }
                 return bid
                     .destroy()
-                    .then(() => res.status(200).send({ message: 'Bid deleted successfully.' }))
+                    .then(() => res.status(200).send({
+                        message: 'Bid deleted successfully.'
+                    }))
                     .catch(error => res.status(400).send(error))
             })
             .catch(error => res.status(400).send(error))

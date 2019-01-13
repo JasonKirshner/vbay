@@ -1,12 +1,16 @@
 const User = require('../models').User
 const Auction = require('../models').Auction
 const Trade = require('../models').Trade
+const Bid = require('../models').Bid
+const Offer = require('../models').Offer
+const Message = require('../models').Message
+const Recipient = require('../models').Recipient
 
 module.exports = {
     create(req, res) {
         return User
             .create({
-                userid: req.body.userid,
+                id: req.body.id,
                 email: req.body.email,
                 password: req.body.password,
                 fname: req.body.fname,
@@ -19,14 +23,29 @@ module.exports = {
     list(req, res) {
         return User
             .findAll({
-                include: [
-                    {
+                include: [{
                         model: Auction,
                         as: 'selling'
                     },
                     {
                         model: Trade,
                         as: 'trading'
+                    },
+                    {
+                        model: Bid,
+                        as: 'bidding'
+                    },
+                    {
+                        model: Offering,
+                        as: 'offering'
+                    },
+                    {
+                        model: Message,
+                        as: 'sent'
+                    },
+                    {
+                        model: Recipient,
+                        as: 'inbox'
                     }
                 ]
             })
@@ -36,9 +55,8 @@ module.exports = {
 
     retrieve(req, res) {
         return User
-            .findById(req.params.userid, {
-                include: [
-                    {
+            .findById(req.params.id, {
+                include: [{
                         model: Auction,
                         as: 'selling'
                     },
@@ -61,7 +79,7 @@ module.exports = {
 
     update(req, res) {
         return User
-            .findById(req.params.userid)
+            .findById(req.params.id)
             .then(user => {
                 if (!user) {
                     return res.status(404).send({
@@ -70,13 +88,13 @@ module.exports = {
                 }
                 return user
                     .update({
-                        userid: req.params.userid || user.userid,
+                        id: req.params.id || user.id,
                         email: req.body.email || user.email,
                         password: req.body.password || user.password,
                         fname: req.body.fname || user.fname,
                         lname: req.body.lname || user.lname
                     })
-                    .then(() => res.status(200).send(user))  // Send back the updated user.
+                    .then(() => res.status(200).send(user)) // Send back the updated user.
                     .catch((error) => res.status(400).send(error))
             })
             .catch((error) => res.status(400).send(error))
@@ -84,7 +102,7 @@ module.exports = {
 
     destroy(req, res) {
         return User
-            .findById(req.params.userid)
+            .findById(req.params.id)
             .then(user => {
                 if (!user) {
                     return res.status(400).send({
@@ -93,7 +111,9 @@ module.exports = {
                 }
                 return user
                     .destroy()
-                    .then(() => res.status(200).send({ message: 'User deleted successfully.' }))
+                    .then(() => res.status(200).send({
+                        message: 'User deleted successfully.'
+                    }))
                     .catch(error => res.status(400).send(error))
             })
             .catch(error => res.status(400).send(error))

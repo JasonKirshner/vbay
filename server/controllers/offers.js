@@ -4,11 +4,10 @@ module.exports = {
     create(req, res) {
         return Offer
             .create({
-                userid: req.body.userid,
-                tradeid: req.params.tradeid,
-                gameid: req.body.gameid,
-                condition: req.body.condition,
-                message: req.body.message
+                offerer: req.body.offerer,
+                trade: req.params.trade,
+                game: req.body.game,
+                condition: req.body.condition
             })
             .then(offer => res.status(201).send(offer))
             .catch(error => res.status(400).send(error))
@@ -23,7 +22,7 @@ module.exports = {
 
     retrieve(req, res) {
         return Offer
-            .findById(req.params.offerid)
+            .findById(req.params.id)
             .then(offer => {
                 if (!offer) {
                     return res.status(404).send({
@@ -37,7 +36,7 @@ module.exports = {
 
     update(req, res) {
         return Offer
-            .findById(req.params.offerid)
+            .findById(req.params.id)
             .then(offer => {
                 if (!offer) {
                     return res.status(404).send({
@@ -46,14 +45,13 @@ module.exports = {
                 }
                 return offer
                     .update({
-                        offerid: req.params.offerid || offer.offerid,
-                        userid: req.body.userid || offer.userid,
-                        tradeid: req.body.tradeid || offer.tradeid,
-                        gameid: req.body.gameid || offer.gameid,
-                        condition: req.body.condition || offer.condition,
-                        message: req.body.message || offer.message
+                        id: req.params.id || offer.id,
+                        offerer: req.body.id || offer.offerer,
+                        trade: req.body.id || offer.trade,
+                        game: req.body.id || offer.game,
+                        condition: req.body.condition || offer.condition
                     })
-                    .then(() => res.status(200).send(offer))  // Send back the updated offer.
+                    .then(() => res.status(200).send(offer)) // Send back the updated offer.
                     .catch((error) => res.status(400).send(error))
             })
             .catch((error) => res.status(400).send(error))
@@ -61,7 +59,7 @@ module.exports = {
 
     destroy(req, res) {
         return Offer
-            .findById(req.params.offerid)
+            .findById(req.params.id)
             .then(offer => {
                 if (!offer) {
                     return res.status(400).send({
@@ -70,7 +68,9 @@ module.exports = {
                 }
                 return offer
                     .destroy()
-                    .then(() => res.status(200).send({ message: 'Offer deleted successfully.' }))
+                    .then(() => res.status(200).send({
+                        message: 'Offer deleted successfully.'
+                    }))
                     .catch(error => res.status(400).send(error))
             })
             .catch(error => res.status(400).send(error))

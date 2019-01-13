@@ -16,7 +16,7 @@ module.exports = {
     },
     retrieve(req, res) {
         return Game
-            .findById(req.params.gameid)
+            .findById(req.params.id)
             .then(game => {
                 if (!game) {
                     return res.status(404).send({
@@ -29,7 +29,7 @@ module.exports = {
     },
     update(req, res) {
         return Game
-            .findById(req.params.gameid)
+            .findById(req.params.id)
             .then(game => {
                 if (!game) {
                     return res.status(404).send({
@@ -38,7 +38,7 @@ module.exports = {
                 }
                 return game
                     .update({
-                        gameid: req.params.gameid || game.gameid,
+                        id: req.params.id || game.id,
                         name: req.body.name || game.name,
                         description: req.body.description || game.description,
                         igdbid: req.body.igdb || game.igdb
@@ -50,7 +50,7 @@ module.exports = {
     },
     destroy(req, res) {
         return Game
-            .findById(req.params.gameid)
+            .findById(req.params.id)
             .then(game => {
                 if (!game) {
                     return res.status(400).send({
