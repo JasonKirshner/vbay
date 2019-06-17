@@ -24,7 +24,7 @@ Now create a vbay database in postgres:
 
 Modify the `/vbay/server/config/config.json` to match your username (usually the administrator name for your system), password (if you have assigned one), and port 5432 (default).
 
-Now navigate to the root of the app, `iste-432-databoys/vbay/` to run the sequelize migration:
+Now navigate to the root of the app, `/vbay/` to run the sequelize migration:
 
     $ sequelize db:migrate
 
