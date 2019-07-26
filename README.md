@@ -84,6 +84,10 @@ https://<HEROKU_APP_NAME>.herokuapp.com/vbay-api/
 
 If you have received the message "You have successfully connected to the vbay API", then congratulations, you're officially running your own vBay API!
 
+## Database ER Diagram
+
+[DB](vbay.png)
+
 ## Built With
 ---
 
