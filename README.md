@@ -86,7 +86,7 @@ If you have received the message "You have successfully connected to the vbay AP
 
 ## Database ER Diagram
 
-![DB](vbay.png)
+![DB](VBay.png)
 
 ## Built With
 
