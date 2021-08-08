@@ -36,7 +36,7 @@ module.exports = {
                         as: 'bidding'
                     },
                     {
-                        model: Offering,
+                        model: Offer,
                         as: 'offering'
                     },
                     {

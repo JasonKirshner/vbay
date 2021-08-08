@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "null",
+    "username": "",
     "password": null,
     "database": "vbay",
     "host": "afternoon-beyond-89008.herokuapp.com",

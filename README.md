@@ -2,7 +2,6 @@
 vBay is a web based application where users are be able to buy, sell, auction off, bid and trade for games from a personal account in a marketplace within many other people. The application provides a search function which will be filterable by categories such as genre,console platform, year, and many other options. The trading option allows users to trade a game for any other game from any platform and one game may be traded for many other games.
 
 ## Getting Started
-
 This repository is for development only and not configured to run on a server. To deploy the app onto a server of your choice you must find those instructions yourself. We have supplied a guide for how to deploy the app via heroku at the [Server-Side Deployment section](#Server-Side-Deployment) using a heroku configured app located in a seperate repository.
 
 ### Prerequisites
@@ -38,7 +37,6 @@ You can visit the server and test the API via this URL:
 http://localhost:8000/vbay-api
 
 ## Server-Side Deployment
-
 We chose [Heroku](https://www.heroku.com/home) to host our API, using Git to push any changes to the live server.
 Of course our app is designed specifically for the Heroku service, but here is how one would deploy the API to Heroku.
 
