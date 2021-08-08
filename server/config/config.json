@@ -22,7 +22,6 @@
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": true
-    },
-    "operatorsAliases": false
+    }
   }
 }
