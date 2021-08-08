@@ -3,7 +3,7 @@ const Recipient = require('../models').Recipient
 module.exports = {
 	create(req, res) {
 		return Recipient.create({
-			recipient: req.params.recipient,
+			user: req.params.user,
 			message: req.body.message,
 			isread: req.body.isread
 		}).then(todo => res.status(201).send(todo)).catch(error => res.status(400).send(error))
@@ -39,7 +39,7 @@ module.exports = {
 				return recipient
 					.update({
 						id: req.params.id || recipient.id,
-						recipient: req.body.recipient || recipient.recipient,
+						user: req.body.user || recipient.user,
 						message: req.body.message || recipient.message,
 						isread: req.body.isread || recipient.isread,
 					})
