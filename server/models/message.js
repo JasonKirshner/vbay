@@ -30,8 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       as: 'deletions'
     })
     Message.hasOne(models.Recipient, {
-      foreignKey: 'message',
-      as: 'recipient'
+      foreignKey: 'recipient',
     })
   }
   return Message

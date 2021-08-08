@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Recipient = sequelize.define('Recipient', {
-    user: {
+    recipient: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -13,6 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   })
-  Recipient.associate = function (models) {}
+  Recipient.associate = function (models) {
+    Recipient.hasOne(models.Message, {
+      foreignKey: 'recipient'
+    })
+    Recipient.hasOne(models.User, {
+      foreignKey: 'recipient'
+    })
+  }
   return Recipient
 }

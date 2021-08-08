@@ -5,10 +5,10 @@ const deletedmsgs = require('./deletedmsgs')
 const games = require('./games')
 const messages = require('./messages')
 const offers = require('./offers')
-const recpients = require('./recipients')
 const sales = require('./sales')
 const trades = require('./trades')
 const users = require('./users')
+const recipients = require('./recipients')
 
 module.exports = {
     auctions,
@@ -17,8 +17,8 @@ module.exports = {
     deletedmsgs,
     games,
     messages,
-    offers,
     recipients,
+    offers,
     sales,
     trades,
     users
