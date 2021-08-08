@@ -1,5 +1,7 @@
 # Ignoring vbay server config file to protect personal info
-config.json
+# config.json
+
+.DS_Store
 
 .vscode
 
