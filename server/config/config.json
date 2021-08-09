@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "",
+    "username": "jason",
     "password": null,
     "database": "vbay",
-    "host": "afternoon-beyond-89008.herokuapp.com",
-    "dialect": "postgres",
-    "operatorsAliases": false
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
   },
   "test": {
     "username": "",
