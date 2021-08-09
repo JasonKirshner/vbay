@@ -20,6 +20,8 @@
     "database": "vbay",
     "host": "afternoon-beyond-89008.herokuapp.com",
     "dialect": "postgres",
+    "native":true, 
+    "ssl":true,
     "dialectOptions": {
       "ssl": true
     }
