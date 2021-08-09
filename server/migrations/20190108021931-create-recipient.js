@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true
       },
       recipient: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: 'Users',
@@ -16,7 +16,7 @@ module.exports = {
         }
       },
       message: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Messages',

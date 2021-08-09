@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true
       },
       bidder: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       auction: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {

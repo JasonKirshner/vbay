@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       remover: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {

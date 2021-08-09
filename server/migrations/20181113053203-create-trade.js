@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       trader: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {

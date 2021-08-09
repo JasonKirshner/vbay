@@ -22,7 +22,7 @@ module.exports = {
         onDelete: 'CASCADE',
         references: {
           model: 'Bids',
-          key: 'bidid'
+          key: 'id'
         }
       },
       price: {

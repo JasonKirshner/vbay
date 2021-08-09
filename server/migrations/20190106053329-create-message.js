@@ -16,7 +16,7 @@ module.exports = {
         }
       },
       sender: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: 'Users',
@@ -24,7 +24,7 @@ module.exports = {
         }
       },
       recipient: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: 'Users',
@@ -33,11 +33,7 @@ module.exports = {
       },
       subject: {
         type: Sequelize.STRING,
-        allowNull: false,
-        references: {
-          model: 'Messages',
-          key: 'id'
-        }
+        allowNull: false
       },
       body: {
         type: Sequelize.STRING,

@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true
       },
       offerer: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
