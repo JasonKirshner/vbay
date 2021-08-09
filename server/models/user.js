@@ -1,3 +1,6 @@
+
+const { v4: uuid } = require('uuid');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     email: {
@@ -17,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   })
+  User.beforeCreate(user => user.id = uuid())
   User.associate = function (models) {
     User.hasMany(models.Auction, {
       foreignKey: 'auctioneer',

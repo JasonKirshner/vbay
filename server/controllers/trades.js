@@ -30,7 +30,7 @@ module.exports = {
 
     retrieve(req, res) {
         return Trade
-            .findById(req.params.id, {
+            .findByPk(req.params.id, {
                 include: [{
                     model: Offer,
                     as: 'offers'
@@ -49,7 +49,7 @@ module.exports = {
 
     update(req, res) {
         return Trade
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(trade => {
                 if (!trade) {
                     return res.status(404).send({
@@ -73,7 +73,7 @@ module.exports = {
 
     destroy(req, res) {
         return Trade
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(trade => {
                 if (!trade) {
                     return res.status(400).send({

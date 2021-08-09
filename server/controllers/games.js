@@ -16,7 +16,7 @@ module.exports = {
     },
     retrieve(req, res) {
         return Game
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(game => {
                 if (!game) {
                     return res.status(404).send({
@@ -29,7 +29,7 @@ module.exports = {
     },
     update(req, res) {
         return Game
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(game => {
                 if (!game) {
                     return res.status(404).send({
@@ -50,7 +50,7 @@ module.exports = {
     },
     destroy(req, res) {
         return Game
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(game => {
                 if (!game) {
                     return res.status(400).send({

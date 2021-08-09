@@ -10,7 +10,6 @@ module.exports = {
     create(req, res) {
         return User
             .create({
-                id: req.body.id,
                 email: req.body.email,
                 password: req.body.password,
                 fname: req.body.fname,
@@ -55,7 +54,7 @@ module.exports = {
 
     retrieve(req, res) {
         return User
-            .findById(req.params.id, {
+            .findByPk(req.params.id, {
                 include: [{
                         model: Auction,
                         as: 'selling'
@@ -79,7 +78,7 @@ module.exports = {
 
     update(req, res) {
         return User
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(user => {
                 if (!user) {
                     return res.status(404).send({
@@ -102,7 +101,7 @@ module.exports = {
 
     destroy(req, res) {
         return User
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(user => {
                 if (!user) {
                     return res.status(400).send({

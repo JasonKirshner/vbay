@@ -20,7 +20,7 @@ module.exports = {
 
     retrieve(req, res) {
         return CompletedTrade
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(completedtrade => {
                 if (!completedtrade) {
                     return res.status(404).send({
@@ -34,7 +34,7 @@ module.exports = {
 
     update(req, res) {
         return CompletedTrade
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(completedtrade => {
                 if (!completedtrade) {
                     return res.status(404).send({
@@ -55,7 +55,7 @@ module.exports = {
 
     destroy(req, res) {
         return CompletedTrade
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(completedtrade => {
                 if (!completedtrade) {
                     return res.status(400).send({

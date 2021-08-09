@@ -21,7 +21,7 @@ module.exports = {
 
     retrieve(req, res) {
         return Sale
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(sale => {
                 if (!sale) {
                     return res.status(404).send({
@@ -35,7 +35,7 @@ module.exports = {
 
     update(req, res) {
         return Sale
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(sale => {
                 if (!sale) {
                     return res.status(404).send({
@@ -57,7 +57,7 @@ module.exports = {
 
     destroy(req, res) {
         return Sale
-            .findById(req.params.id)
+            .findByPk(req.params.id)
             .then(sale => {
                 if (!sale) {
                     return res.status(400).send({

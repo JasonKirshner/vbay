@@ -24,7 +24,7 @@ module.exports = {
 	},
 	retrieve(req, res) {
 		return Message
-			.findById(req.params.id, {
+			.findByPk(req.params.id, {
 				include: [{
 					model: Recipient,
 					as: 'recipient'
@@ -42,7 +42,7 @@ module.exports = {
 	},
 	update(req, res) {
 		return Message
-			.findById(req.params.id)
+			.findByPk(req.params.id)
 			.then(message => {
 				if (!message) {
 					return res.status(404).send({
@@ -65,7 +65,7 @@ module.exports = {
 	},
 	destroy(req, res) {
 		return Message
-			.findById(req.params.id)
+			.findByPk(req.params.id)
 			.then(message => {
 				if (!message) {
 					return res.status(400).send({
